@@ -10,16 +10,18 @@
 		3DAE9069311B2DC93DE1F3E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE90EE8CD7210A6CF168B5 /* ViewController.m */; };
 		3DAE90BFD9D708C53B9F4414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE9AC477B3F55CB956C068 /* Foundation.framework */; };
 		3DAE9160810D06C3780F3B8B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9CAE31A5206E2A4FFED7 /* InfoPlist.strings */; };
+		3DAE91756C7CB6EF56E3BA26 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9A0A51B65B317027E1D9 /* .gitignore */; };
 		3DAE93153BBC31AED77793CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE9AC477B3F55CB956C068 /* Foundation.framework */; };
 		3DAE93BD5C410A784A75F7BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE9D63E00DF3B4F0758B25 /* AppDelegate.m */; };
 		3DAE963D4FB9C71E65754D1C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE9906798644CE67B3FD64 /* SenTestingKit.framework */; };
 		3DAE9642D3484EAC69EAE274 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */; };
 		3DAE99D5230A7E132BBFE9BC /* WebViewFrameWorkiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE95DB2251D1C7F08DFC0C /* WebViewFrameWorkiOSTests.m */; };
+		3DAE9C278E1133EB719EBA0C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE9679BD60901A7A9D4919 /* Security.framework */; };
 		3DAE9CB364F3589296E48423 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE950AA1893C1BE9482C57 /* CoreGraphics.framework */; };
+		3DAE9CD199280252E0AF3C60 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9A0A51B65B317027E1D9 /* .gitignore */; };
 		3DAE9D3EB1BD93FD543E22CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE93880B03C6525F7959B8 /* main.m */; };
 		3DAE9F6E212409D5305F02AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9B493058DD2689DF1FD5 /* InfoPlist.strings */; };
 		3DAE9FB5A63EE192032BE51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */; };
-		A951976C189AD21400BDF8FB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A951976B189AD21400BDF8FB /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,16 +44,17 @@
 		3DAE950AA1893C1BE9482C57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3DAE959D83B6B098EBDEC420 /* WebViewFrameWorkiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "WebViewFrameWorkiOS-Info.plist"; sourceTree = "<group>"; };
 		3DAE95DB2251D1C7F08DFC0C /* WebViewFrameWorkiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewFrameWorkiOSTests.m; sourceTree = "<group>"; };
+		3DAE9679BD60901A7A9D4919 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = ../../../../../Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = "<group>"; };
 		3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3DAE97C75E45DF21DA793478 /* WebViewFrameWorkiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebViewFrameWorkiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAE9906798644CE67B3FD64 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3DAE9A0A51B65B317027E1D9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		3DAE9AC477B3F55CB956C068 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DAE9D41888DE74358F442DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DAE9D63E00DF3B4F0758B25 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DAE9D6FA12EAEE6E87A801E /* WebViewFrameWorkiOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewFrameWorkiOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAE9D9C6CE69E1E0C1116E2 /* WebViewFrameWorkiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewFrameWorkiOS-Prefix.pch"; sourceTree = "<group>"; };
 		3DAE9F4AE4EDD0C70AE9F70E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A951976B189AD21400BDF8FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A951976C189AD21400BDF8FB /* Security.framework in Frameworks */,
 				3DAE9FB5A63EE192032BE51A /* UIKit.framework in Frameworks */,
 				3DAE90BFD9D708C53B9F4414 /* Foundation.framework in Frameworks */,
 				3DAE9CB364F3589296E48423 /* CoreGraphics.framework in Frameworks */,
+				3DAE9C278E1133EB719EBA0C /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,11 +85,11 @@
 		3DAE91E652EE1C6152B134EB = {
 			isa = PBXGroup;
 			children = (
-				A951976B189AD21400BDF8FB /* Security.framework */,
 				3DAE982D4BCCD1F0830F8713 /* Products */,
 				3DAE99CB107FEB29864E1FD5 /* Frameworks */,
 				3DAE9FA3E72463D4990421A1 /* WebViewFrameWorkiOS */,
 				3DAE9E820D0AB49F0C64E92F /* WebViewFrameWorkiOSTests */,
+				3DAE9A0A51B65B317027E1D9 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +109,7 @@
 				3DAE9AC477B3F55CB956C068 /* Foundation.framework */,
 				3DAE950AA1893C1BE9482C57 /* CoreGraphics.framework */,
 				3DAE9906798644CE67B3FD64 /* SenTestingKit.framework */,
+				3DAE9679BD60901A7A9D4919 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAE9160810D06C3780F3B8B /* InfoPlist.strings in Resources */,
+				3DAE9CD199280252E0AF3C60 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAE9F6E212409D5305F02AF /* InfoPlist.strings in Resources */,
+				3DAE91756C7CB6EF56E3BA26 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
