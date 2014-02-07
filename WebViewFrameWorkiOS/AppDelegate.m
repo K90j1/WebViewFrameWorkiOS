@@ -9,6 +9,13 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 
+NSString *const CREDENTIAL_USER = @"userName";
+NSString *const CREDENTIAL_PASS = @"password";
+NSString *const PROTECT_HOST = @"google.co.jp";
+NSInteger *const PROTECT_PORT = 80;
+NSString *const PROTECT_URI = @"http";
+NSString *const PROTECT_REALM = @"BASIC AUTHRICATION";
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -22,7 +29,21 @@
     self.viewController = [[ViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    return YES;
+	[self configureCredential];
+	return YES;
+}
+
+// For Basic Auth
+- (void)configureCredential {
+	NSURLCredential *urlCredential =
+			[NSURLCredential credentialWithUser:CREDENTIAL_USER password:CREDENTIAL_PASS persistence:NSURLCredentialPersistenceForSession];
+	NSURLCredentialStorage *urlCredentialStorage = [NSURLCredentialStorage sharedCredentialStorage];
+	NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:PROTECT_HOST
+																				  port:PROTECT_PORT
+																			  protocol:PROTECT_URI
+																				 realm:PROTECT_REALM
+																  authenticationMethod:NSURLAuthenticationMethodDefault];
+	[urlCredentialStorage setCredential:urlCredential forProtectionSpace:protectionSpace];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
