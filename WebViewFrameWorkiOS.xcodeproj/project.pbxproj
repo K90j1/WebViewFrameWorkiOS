@@ -22,6 +22,9 @@
 		3DAE9D3EB1BD93FD543E22CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE93880B03C6525F7959B8 /* main.m */; };
 		3DAE9F6E212409D5305F02AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9B493058DD2689DF1FD5 /* InfoPlist.strings */; };
 		3DAE9FB5A63EE192032BE51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */; };
+		78C78250EB860D871253678A /* productIds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78C78233DCE05E857FA26A88 /* productIds.plist */; };
+		78C789F9A629198991DC149C /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C78B1DEE84851189EB9FB6 /* UserDefaults.m */; };
+		78C78A4F8694324BC51001B4 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C78B1DEE84851189EB9FB6 /* UserDefaults.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		3DAE9D6FA12EAEE6E87A801E /* WebViewFrameWorkiOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewFrameWorkiOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAE9D9C6CE69E1E0C1116E2 /* WebViewFrameWorkiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewFrameWorkiOS-Prefix.pch"; sourceTree = "<group>"; };
 		3DAE9F4AE4EDD0C70AE9F70E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		78C78042F0CD7D51EA60AB3B /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
+		78C78233DCE05E857FA26A88 /* productIds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = productIds.plist; sourceTree = "<group>"; };
+		78C78B1DEE84851189EB9FB6 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,9 @@
 				3DAE9D63E00DF3B4F0758B25 /* AppDelegate.m */,
 				3DAE909C7831DCE124C73359 /* ViewController.h */,
 				3DAE90EE8CD7210A6CF168B5 /* ViewController.m */,
+				78C78B1DEE84851189EB9FB6 /* UserDefaults.m */,
+				78C78042F0CD7D51EA60AB3B /* UserDefaults.h */,
+				78C78233DCE05E857FA26A88 /* productIds.plist */,
 			);
 			path = WebViewFrameWorkiOS;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			files = (
 				3DAE9160810D06C3780F3B8B /* InfoPlist.strings in Resources */,
 				3DAE9CD199280252E0AF3C60 /* .gitignore in Resources */,
+				78C78250EB860D871253678A /* productIds.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +276,7 @@
 				3DAE9D3EB1BD93FD543E22CD /* main.m in Sources */,
 				3DAE93BD5C410A784A75F7BD /* AppDelegate.m in Sources */,
 				3DAE9069311B2DC93DE1F3E1 /* ViewController.m in Sources */,
+				78C789F9A629198991DC149C /* UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAE99D5230A7E132BBFE9BC /* WebViewFrameWorkiOSTests.m in Sources */,
+				78C78A4F8694324BC51001B4 /* UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

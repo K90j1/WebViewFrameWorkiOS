@@ -5,8 +5,10 @@
 //  Created by bookair on 1/31/14.
 //  Copyright (c) 2014 routeFlags,inc. All rights reserved.
 //
-
+#import <StoreKit/StoreKit.h>
 #import "ViewController.h"
+
+NSString *const DEFAULTS_KEY = @"sample001";
 
 NSString *const FIRST_URL = @"https://www.google.com/search";
 NSString *const UUID_KEY = @"UUID";
@@ -49,89 +51,10 @@ NSString *const UUID_KEY = @"UUID";
 	return YES;
 }
 
-- (NSString *)getUUIDKeychain {
-	// Set Up Query
-	NSMutableDictionary *query = [NSMutableDictionary dictionary];
-	[query setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
-	[query setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnData];
-	[query setObject:(id)UUID_KEY forKey:(__bridge id)kSecAttrApplicationTag];
-	CFTypeRef persistKey;
-	OSStatus osStatus = SecItemCopyMatching((__bridge CFDictionaryRef) query, &persistKey);
-	if (osStatus != noErr) {
-		NSLog(@"ERROR getUUIDKeychain result = %ld query = %@", osStatus, query);
-		return nil;
-	}
-	NSData *passwordData = (__bridge_transfer NSData *) persistKey;
-	return [[NSString alloc] initWithBytes:[passwordData bytes]
-									length:[passwordData length] encoding:NSUTF8StringEncoding];
-}
-
-- (void)storeUUIDKeychain:(NSString *)storeId {
-	// Set Up Query
-	NSMutableDictionary *query = [NSMutableDictionary dictionary];
-	// atag
-	[query setObject:(id)UUID_KEY forKey:(__bridge id)kSecAttrApplicationTag];
-	// class
-	[query setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
-	// pdmn
-	[query setObject:(__bridge id)kSecAttrAccessibleWhenUnlocked forKey:(__bridge id)kSecAttrAccessible];
-	// r_Data
-	[query setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)kSecReturnData];
-	// removing item if it exists
-	SecItemDelete((__bridge CFDictionaryRef)query);
-	// v_Data
-	[query setObject:(id)[storeId dataUsingEncoding:NSUTF8StringEncoding] forKey:(__bridge id)kSecValueData];
-	CFTypeRef persistKey;
-	OSStatus osStatus = SecItemAdd((__bridge CFDictionaryRef)query, &persistKey);
-	if(osStatus) {
-		NSLog(@"ERROR storeUUIDKeychain result = %ld query = %@", osStatus, query);
-	}
-}
-
-- (void)storeUUIDUserDefaults:(NSString *)storeId {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:storeId forKey:UUID_KEY];
-	[userDefaults synchronize];
-}
-
-- (NSString *)getUUIDUserDefaults {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSString *uuidString = [userDefaults stringForKey:UUID_KEY];
-	return uuidString;
-}
-
-- (NSString *)createUUID {
-	CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-	NSString *uuidString = (__bridge_transfer NSString *) CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
-	CFRelease(uuidRef);
-	return uuidString;
-}
-
-- (NSString *)getUUID {
-	// Looking for UUID on UserDefault
-	NSString *uuidString = [self getUUIDUserDefaults];
-	if ([uuidString length] > 0) {
-		NSLog(@"Found %@ on UserDefaults", uuidString);
-		return uuidString;
-	}
-	// Looking for UUID on Keychain
-	uuidString = [self getUUIDKeychain];
-	if ([uuidString length] > 0) {
-		NSLog(@"Found %@ on Keychain", uuidString);
-		return uuidString;
-	}
-	// Create to Set new UUID
-	uuidString = [self createUUID];
-	[self storeUUIDKeychain:uuidString];
-	[self storeUUIDUserDefaults:uuidString];
-	return uuidString;
-}
-
 - (void)webViewDidFinishLoad:(UIWebView *)webViewArg {
 //    NSString *body = [self.webViewArg stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
 //    NSLog(@"innerHTML=%@", body);
 }
-
 
 - (void)viewDidUnload {
 	[super viewDidUnload];
@@ -158,6 +81,90 @@ NSString *const UUID_KEY = @"UUID";
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations
 	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchased:
+                NSLog(@"SKPaymentTransactionStatePurchased");
+                [self storeItemStatusUserDefaults:@"buy"];
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                NSLog(@"SKPaymentTransactionStateFailed");
+                if (transaction.error.code != SKErrorPaymentCancelled) {
+                    NSLog(@"An Error Encoutered %@", transaction.error.description );
+                }
+//                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                NSLog(@"SKPaymentTransactionStateRestored");
+
+//                [self restoreTransaction:transaction];
+            default:
+                break;
+        }
+    }
+}
+
+//SKProductsRequestDelegate protocol method
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+//	self.products = response.products;
+    NSLog(@"products = %@", response.products);
+    for (SKProduct *product in response.products) {
+        NSLog(@"valid product identifier: %@", product.productIdentifier);
+        SKPayment *payment = [SKPayment paymentWithProduct:product];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
+
+    for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
+        NSLog(@"invalidIdentifier = %@", invalidIdentifier);
+        // Handle any invalid product identifiers.
+    }
+//	[self displayStoreUI]; // Custom method
+}
+
+// カスタムメソット
+- (void)validateProductIdentifiers:(NSArray *)productIdentifiers {
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc]
+            initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
+    productsRequest.delegate = self;
+    [productsRequest start];
+}
+
+
+- (void)fetchProductIdentifiersFromURL {
+    NSURL *productUrl = [[NSBundle mainBundle] URLForResource:@"productIds"
+                                                withExtension:@"plist"];
+    NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:productUrl];
+    if (!productIdentifiers) {
+        /* エラーを処理する */
+    }
+    NSLog(@"productIdentifiers = %@", productIdentifiers);
+    dispatch_queue_t main_queue = dispatch_get_main_queue();
+    dispatch_async(main_queue, ^{
+        [self validateProductIdentifiers:productIdentifiers];
+    });
+}
+
+- (void)storeItemStatusUserDefaults:(NSString *)status{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if(status == @"buy"){
+        [userDefaults setBool:YES forKey:DEFAULTS_KEY];
+        [userDefaults synchronize];
+        return;
+    }
+    [userDefaults setBool:NO forKey:DEFAULTS_KEY];
+    [userDefaults synchronize];
+    return;
+}
+
+- (void)completeTransaction:(SKPaymentTransaction *)transaction{
+    SKPaymentQueue *skPaymentQueue = [SKPaymentQueue defaultQueue];
+    [skPaymentQueue finishTransaction:transaction];
 }
 
 @end
