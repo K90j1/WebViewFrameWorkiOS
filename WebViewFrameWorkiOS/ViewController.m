@@ -9,18 +9,25 @@
 #import "ViewController.h"
 
 NSString *const DEFAULTS_KEY = @"sample001";
-
-NSString *const FIRST_URL = @"https://www.google.com/search";
 NSString *const UUID_KEY = @"UUID";
 
-@implementation ViewController
+@implementation ViewController{
+    NSString *targetUrl;
+    NSMutableArray *productIds;
+}
 
 @synthesize webView = _webView;
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Release any cached data, images, etc that aren't in use.
+- (id) init {
+    self = [super init];
+    if (self) {
+        NSDictionary *temp = [self getDataEnvironment];
+        self.targetUrl = [temp objectForKey:@"TargetUrl"];
+        self.productIds = [NSMutableArray arrayWithArray:[temp objectForKey:@"ProductIds"]];
+    }
+    return self;
 }
+
 
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view.
@@ -34,11 +41,12 @@ NSString *const UUID_KEY = @"UUID";
 
 //    NSLog(@"UUID=%@", [self getUUID]);
 	// Set Up Request URL
-	NSURL *url = [NSURL URLWithString: FIRST_URL];
+	NSURL *url = [NSURL URLWithString: self.targetUrl];
 	NSMutableURLRequest *mutableURLRequest = [[NSMutableURLRequest alloc]initWithURL: url];
-	[mutableURLRequest setHTTPMethod: @"POST"];
-	NSString *string = [NSString stringWithFormat: @"q=%@", @"Objective-C"];
-	[mutableURLRequest setHTTPBody: [string dataUsingEncoding: NSUTF8StringEncoding]];
+//	[mutableURLRequest setHTTPMethod: @"POST"];
+//    [mutableURLRequest setHTTPMethod: @"GET"];
+//	NSString *string = [NSString stringWithFormat: @"q=%@", @"Objective-C"];
+//	[mutableURLRequest setHTTPBody: [string dataUsingEncoding: NSUTF8StringEncoding]];
 	[self.webView loadRequest: mutableURLRequest];
 }
 
@@ -56,27 +64,6 @@ NSString *const UUID_KEY = @"UUID";
 //    NSLog(@"innerHTML=%@", body);
 }
 
-- (void)viewDidUnload {
-	[super viewDidUnload];
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations
@@ -137,7 +124,7 @@ NSString *const UUID_KEY = @"UUID";
 
 
 - (void)fetchProductIdentifiersFromURL {
-    NSURL *productUrl = [[NSBundle mainBundle] URLForResource:@"productIds"
+    NSURL *productUrl = [[NSBundle mainBundle] URLForResource:@"DataEnvironment"
                                                 withExtension:@"plist"];
     NSArray *productIdentifiers = [NSArray arrayWithContentsOfURL:productUrl];
     if (!productIdentifiers) {
@@ -167,4 +154,25 @@ NSString *const UUID_KEY = @"UUID";
     [skPaymentQueue finishTransaction:transaction];
 }
 
+-(NSDictionary *)getDataEnvironment {
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+            NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"DataEnvironment.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"DataEnvironment" ofType:@"plist"];
+    }
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
+            propertyListFromData:plistXML
+                mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                          format:&format
+                errorDescription:&errorDesc];
+    if (!temp) {
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    }
+    return temp;
+}
 @end

@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const FIRST_URL;
 extern NSString *const UUID_KEY;
 
 // Using UIWebViewDelegate Protocol
 @interface ViewController : UIViewController <UIWebViewDelegate>
+
 @property(strong, nonatomic) UIWebView *webView;
+@property (copy, nonatomic) NSString *targetUrl;
+@property (copy, nonatomic) NSMutableArray *productIds;
 
 - (NSString *)getUUIDUserDefaults;
 
@@ -24,5 +26,7 @@ extern NSString *const UUID_KEY;
 - (NSString *)createUUID;
 
 - (NSString *)getUUID;
+
+-(NSDictionary *)getDataEnvironment;
 
 @end

@@ -22,7 +22,8 @@
 		3DAE9D3EB1BD93FD543E22CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE93880B03C6525F7959B8 /* main.m */; };
 		3DAE9F6E212409D5305F02AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE9B493058DD2689DF1FD5 /* InfoPlist.strings */; };
 		3DAE9FB5A63EE192032BE51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */; };
-		78C78250EB860D871253678A /* productIds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78C78233DCE05E857FA26A88 /* productIds.plist */; };
+		6D07FCFC18FBFA2D00869649 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D07FCFB18FBFA2D00869649 /* StoreKit.framework */; };
+		6D07FCFE18FBFBF900869649 /* DataEnvironment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D07FCFD18FBFBF900869649 /* DataEnvironment.plist */; };
 		78C789F9A629198991DC149C /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C78B1DEE84851189EB9FB6 /* UserDefaults.m */; };
 		78C78A4F8694324BC51001B4 /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C78B1DEE84851189EB9FB6 /* UserDefaults.m */; };
 /* End PBXBuildFile section */
@@ -58,8 +59,9 @@
 		3DAE9D6FA12EAEE6E87A801E /* WebViewFrameWorkiOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewFrameWorkiOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAE9D9C6CE69E1E0C1116E2 /* WebViewFrameWorkiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewFrameWorkiOS-Prefix.pch"; sourceTree = "<group>"; };
 		3DAE9F4AE4EDD0C70AE9F70E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6D07FCFB18FBFA2D00869649 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6D07FCFD18FBFBF900869649 /* DataEnvironment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DataEnvironment.plist; sourceTree = "<group>"; };
 		78C78042F0CD7D51EA60AB3B /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
-		78C78233DCE05E857FA26A88 /* productIds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = productIds.plist; sourceTree = "<group>"; };
 		78C78B1DEE84851189EB9FB6 /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 			files = (
 				3DAE9FB5A63EE192032BE51A /* UIKit.framework in Frameworks */,
 				3DAE90BFD9D708C53B9F4414 /* Foundation.framework in Frameworks */,
+				6D07FCFC18FBFA2D00869649 /* StoreKit.framework in Frameworks */,
 				3DAE9CB364F3589296E48423 /* CoreGraphics.framework in Frameworks */,
 				3DAE9C278E1133EB719EBA0C /* Security.framework in Frameworks */,
 			);
@@ -111,6 +114,7 @@
 		3DAE99CB107FEB29864E1FD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D07FCFB18FBFA2D00869649 /* StoreKit.framework */,
 				3DAE97B226BF43D9C4CF3AD8 /* UIKit.framework */,
 				3DAE9AC477B3F55CB956C068 /* Foundation.framework */,
 				3DAE950AA1893C1BE9482C57 /* CoreGraphics.framework */,
@@ -160,7 +164,7 @@
 				3DAE90EE8CD7210A6CF168B5 /* ViewController.m */,
 				78C78B1DEE84851189EB9FB6 /* UserDefaults.m */,
 				78C78042F0CD7D51EA60AB3B /* UserDefaults.h */,
-				78C78233DCE05E857FA26A88 /* productIds.plist */,
+				6D07FCFD18FBFBF900869649 /* DataEnvironment.plist */,
 			);
 			path = WebViewFrameWorkiOS;
 			sourceTree = "<group>";
@@ -211,6 +215,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					3DAE9519C58FC1E0CADBA08C = {
+						DevelopmentTeam = 45GXVEBQ63;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 3DAE93F6E1728CF6512DECD3 /* Build configuration list for PBXProject "WebViewFrameWorkiOS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -237,7 +251,7 @@
 			files = (
 				3DAE9160810D06C3780F3B8B /* InfoPlist.strings in Resources */,
 				3DAE9CD199280252E0AF3C60 /* .gitignore in Resources */,
-				78C78250EB860D871253678A /* productIds.plist in Resources */,
+				6D07FCFE18FBFBF900869649 /* DataEnvironment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,10 +336,13 @@
 		3DAE9273B15508CD31AEFD68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WebViewFrameWorkiOS/WebViewFrameWorkiOS-Prefix.pch";
 				INFOPLIST_FILE = "WebViewFrameWorkiOS/WebViewFrameWorkiOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -333,10 +350,13 @@
 		3DAE94765300EFC50F2CA00A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WebViewFrameWorkiOS/WebViewFrameWorkiOS-Prefix.pch";
 				INFOPLIST_FILE = "WebViewFrameWorkiOS/WebViewFrameWorkiOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

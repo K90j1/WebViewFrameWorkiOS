@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TargetUrl</key>
+	<string>https://www.google.com/</string>
+	<key>BuyingPageUrl</key>
+	<string></string>
+	<key>New item</key>
+	<string></string>
+	<key>ProductIds</key>
+	<array>
+		<string>sample001</string>
+	</array>
+</dict>
+</plist>
